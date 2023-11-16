@@ -3,33 +3,26 @@ export const typeDefs = `#graphql
         me: User
         users: [User]
         posts: [Post]
+        profile(userId: ID!): Profile
     }
 
     type Mutation {
         signup(
-            name: String!
-            email: String!
+            name: String!,
+            email: String!,
             password: String!
             bio: String
-        ): AuthPayload
-
+        ): AuthPayload,
+        
         signin(
             email: String!
             password: String!
-        ) : AuthPayload
+        ): AuthPayload,
 
-        addPost(
-           post: PostInput!
-        ): PostPayload
-
-        updatePost(
-            postId: ID!
-            post: PostInput!
-        ): PostPayload
-
-        deletePost(
-            postId: ID!
-        ): PostPayload
+        addPost(post: PostInput!): PostPayload,
+        updatePost(postId: ID!, post: PostInput!): PostPayload,
+        deletePost(postId: ID!): PostPayload,
+        publishPost(postId: ID!): PostPayload
     }
 
     type Post {
@@ -56,7 +49,7 @@ export const typeDefs = `#graphql
         user: User!
     }
 
-    type AuthPayload  {
+    type AuthPayload {
         userError: String
         token: String
     }
