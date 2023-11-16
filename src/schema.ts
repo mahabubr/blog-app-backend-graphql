@@ -26,6 +26,10 @@ export const typeDefs = `#graphql
             postId: ID!
             post: PostInput!
         ): PostPayload
+
+        deletePost(
+            postId: ID!
+        ): PostPayload
     }
 
     type Post {
